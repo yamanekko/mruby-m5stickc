@@ -17,5 +17,7 @@ jobs:
           git submodule update --init --recursive
       - name: copy build_config.rb
         run: cp ./.github/actions/build_config_sample.rb M5StickC-IDF-m5mruby/esp32_build_config.rb
-      - name: build
-        run: cd M5StickC-IDF-m5mruby && idf.py clean build
+      - name: build with cmake using idf.py
+        run: |
+          $IDF_PATH/export.sh
+          cd M5StickC-IDF-m5mruby && idf.py clean build
