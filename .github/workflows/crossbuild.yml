@@ -1,0 +1,21 @@
+name: Cross Build for ESP32
+on: [push]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    container:
+      image: espressif/idf
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: checkout M5StickC-IDF-m5mruby
+        run: |
+          git clone https://github.com/yamanekko/M5StickC-IDF-m5mruby.git
+          cd M5StickC-IDF-m5mruby
+          git submodule update --init --recursive --recommend-shallow --depth 5
+      - name: copy build_config.rb
+        run: cp ./.github/actions/build_config_sample.rb M5StickC-IDF-m5mruby/esp32_build_config.rb
+      - name: build
+        run: cd M5StickC-IDF-m5mruby && idf.py clean build
