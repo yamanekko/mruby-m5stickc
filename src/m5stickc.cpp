@@ -6,7 +6,7 @@ extern "C" {
 
 // TODO:センサー等のクラスを追加する
 // void mrb_mruby_xxx_gem_init(mrb_state *mrb);
-void mrb_mruby_button_gem_init(mrb_state *mrb);
+void mrb_mruby_m5stickc_button_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_led_gem_init(mrb_state *mrb);
 
 static mrb_value
@@ -28,7 +28,7 @@ mrb_mruby_m5stickc_gem_init(mrb_state* mrb)
   mrb_define_method(mrb, m5_class, "initialize", mrb_mruby_m5stickc_initialize, MRB_ARGS_NONE());
 
   // initialize under classes
-  mrb_mruby_button_gem_init(mrb);
+  mrb_mruby_m5stickc_button_gem_init(mrb);
   mrb_mruby_m5stickc_led_gem_init(mrb);
   // mrb_mruby_xxx_gem_init(mrb);
 

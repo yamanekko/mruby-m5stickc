@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 static mrb_value
-mrb_mruby_button_initialize(mrb_state *mrb, mrb_value self)
+mrb_mruby_m5stickc_button_initialize(mrb_state *mrb, mrb_value self)
 {
     mrb_int n;
     mrb_get_args(mrb, "i", &n);
@@ -44,7 +44,7 @@ button_get(mrb_state *mrb, mrb_int n)
 }
 
 static mrb_value
-mrb_mruby_button_ispressed(mrb_state *mrb, mrb_value self)
+mrb_mruby_m5stickc_button_ispressed(mrb_state *mrb, mrb_value self)
 {
 	mrb_int num = mrb_fixnum(mrb_iv_get(mrb, self, mrb_intern_lit(mrb, "@num")));
     Button button = button_get(mrb, num);
@@ -58,13 +58,13 @@ mrb_mruby_button_ispressed(mrb_state *mrb, mrb_value self)
 
 
 void
-mrb_mruby_button_gem_init(mrb_state* mrb)
+mrb_mruby_m5stickc_button_gem_init(mrb_state* mrb)
 {
 	struct RClass * m5_class = mrb_module_get(mrb, "M5StickC");
 	struct RClass * button_class = mrb_define_class_under(mrb, m5_class, "Button", mrb->object_class);
   //methods
-	mrb_define_method(mrb, button_class, "initialize", mrb_mruby_button_initialize, MRB_ARGS_REQ(1));
-	mrb_define_method(mrb, button_class, "pressed?", mrb_mruby_button_ispressed, MRB_ARGS_NONE());
+	mrb_define_method(mrb, button_class, "initialize", mrb_mruby_m5stickc_button_initialize, MRB_ARGS_REQ(1));
+	mrb_define_method(mrb, button_class, "pressed?", mrb_mruby_m5stickc_button_ispressed, MRB_ARGS_NONE());
 //	mrb_define_method(mrb, button_class, "wasPressed?", mrb_mruby_button_waspressed, MRB_ARGS_NONE());
 //	mrb_define_method(mrb, button_class, "read", mrb_mruby_button_read, MRB_ARGS_NONE());
 //	mrb_define_method(mrb, button_class, "pressed?", mrb_mruby_button_isreleased, MRB_ARGS_NONE());
@@ -77,7 +77,7 @@ mrb_mruby_button_gem_init(mrb_state* mrb)
 }
 
 void
-mrb_mruby_button_gem_final(mrb_state* mrb)
+mrb_mruby_m5stickc_button_gem_final(mrb_state* mrb)
 {
 }
 
