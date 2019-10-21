@@ -78,7 +78,7 @@ mrb_m5stickc_led_brightness(mrb_state *mrb, mrb_value self)
 void
 mrb_mruby_m5stickc_led_gem_init(mrb_state* mrb)
 {
-  struct RClass * m5c = mrb_class_get(mrb, "M5StickC");
+  struct RClass * m5c = mrb_module_get(mrb, "M5StickC");
   struct RClass * led_class = mrb_define_class_under(mrb, m5c, "LED", mrb->object_class);
 
   mrb_define_method(mrb, led_class, "initialize", mrb_m5stickc_led_init, MRB_ARGS_NONE());
