@@ -26,7 +26,8 @@ mrb_mruby_m5stickc_button_initialize(mrb_state *mrb, mrb_value self)
     mrb_get_args(mrb, "i", &n);
     mrb_iv_set(mrb, self, mrb_intern_lit(mrb, "@num"), mrb_fixnum_value(n));
     if(n != BUTTON_A_PIN && n != BUTTON_B_PIN){
-        Button btn = Button(BUTTON_A_PIN, true, DEBOUNCE_MS);
+        // Button btn = Button(BUTTON_A_PIN, true, DEBOUNCE_MS);
+        mrb_raisef(mrb, E_ARGUMENT_ERROR, "invalid pin number");
     }
 	return self;
 }
