@@ -55,6 +55,22 @@ mrb_m5stickc_mpu6886_read_accel_data(mrb_state *mrb, mrb_value self)
 }
 
 static mrb_value
+mrb_m5stickc_mpu6886_get_accel_data(mrb_state *mrb, mrb_value self)
+{
+  float x, y, z;
+  mrb_value result;
+  const mrb_value values[3];
+
+  M5.MPU6886.getAccelData(&x, &y, &z);
+  values[0] = mrb_float_value(mrb, (mrb_float)x);
+  values[1] = mrb_float_value(mrb, (mrb_float)y);
+  values[2] = mrb_float_value(mrb, (mrb_float)z);
+  result = mrb_ary_new_from_values(mrb, 3, values);
+
+  return result;
+}
+
+static mrb_value
 mrb_m5stickc_mpu6886_read_gyro_data(mrb_state *mrb, mrb_value self)
 {
   float x, y, z;
@@ -68,6 +84,22 @@ mrb_m5stickc_mpu6886_read_gyro_data(mrb_state *mrb, mrb_value self)
 }
 
 static mrb_value
+mrb_m5stickc_mpu6886_get_gyro_data(mrb_state *mrb, mrb_value self)
+{
+  float x, y, z;
+  mrb_value result;
+  const mrb_value values[3];
+
+  M5.MPU6886.getGyroData(&x, &y, &z);
+  values[0] = mrb_float_value(mrb, (mrb_float)x);
+  values[1] = mrb_float_value(mrb, (mrb_float)y);
+  values[2] = mrb_float_value(mrb, (mrb_float)z);
+  result = mrb_ary_new_from_values(mrb, 3, values);
+
+  return result;
+}
+
+static mrb_value
 mrb_m5stickc_mpu6886_read_ahrs_data(mrb_state *mrb, mrb_value self)
 {
   float pitch, roll, yaw;
@@ -78,6 +110,22 @@ mrb_m5stickc_mpu6886_read_ahrs_data(mrb_state *mrb, mrb_value self)
   mrb_iv_set(mrb, self, mrb_intern_lit(mrb, "@yaw"), mrb_float_value(mrb, (mrb_float)yaw));
 
   return self;
+}
+
+static mrb_value
+mrb_m5stickc_mpu6886_get_ahrs_data(mrb_state *mrb, mrb_value self)
+{
+  float pitch, roll, yaw;
+  mrb_value result;
+  const mrb_value values[3];
+
+  M5.MPU6886.getAhrsData(&pitch, &roll, &yaw);
+  values[0] = mrb_float_value(mrb, (mrb_float)pitch);
+  values[1] = mrb_float_value(mrb, (mrb_float)roll);
+  values[2] = mrb_float_value(mrb, (mrb_float)yaw);
+  result = mrb_ary_new_from_values(mrb, 3, values);
+
+  return result;
 }
 
 static mrb_value
@@ -111,6 +159,9 @@ mrb_mruby_m5stickc_mpu6886_gem_init(mrb_state* mrb)
 	mrb_define_method(mrb, mpu6886_class, "read_accel_data", mrb_m5stickc_mpu6886_read_accel_data, MRB_ARGS_NONE());
 	mrb_define_method(mrb, mpu6886_class, "read_gyro_data", mrb_m5stickc_mpu6886_read_gyro_data, MRB_ARGS_NONE());
 	mrb_define_method(mrb, mpu6886_class, "read_ahrs_data", mrb_m5stickc_mpu6886_read_ahrs_data, MRB_ARGS_NONE());
+	mrb_define_method(mrb, mpu6886_class, "accel_data", mrb_m5stickc_mpu6886_get_accel_data, MRB_ARGS_NONE());
+	mrb_define_method(mrb, mpu6886_class, "gyro_data", mrb_m5stickc_mpu6886_get_gyro_data, MRB_ARGS_NONE());
+	mrb_define_method(mrb, mpu6886_class, "ahrs_data", mrb_m5stickc_mpu6886_get_ahrs_data, MRB_ARGS_NONE());
 	mrb_define_method(mrb, mpu6886_class, "temp_adc", mrb_m5stickc_mpu6886_temp_adc, MRB_ARGS_NONE());
 	mrb_define_method(mrb, mpu6886_class, "temp_data", mrb_m5stickc_mpu6886_temp_data, MRB_ARGS_NONE());
 }
