@@ -9,6 +9,9 @@ extern "C" {
 void mrb_mruby_m5stickc_button_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_led_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_display_gem_init(mrb_state *mrb);
+void mrb_mruby_m5stickc_wire_gem_init(mrb_state *mrb);
+void mrb_mruby_m5stickc_bmp280_gem_init(mrb_state *mrb);
+void mrb_mruby_m5stickc_dht12_gem_init(mrb_state *mrb);
 
 static mrb_value
 mrb_mruby_m5stickc_initialize(mrb_state *mrb, mrb_value self)
@@ -32,6 +35,9 @@ mrb_mruby_m5stickc_gem_init(mrb_state* mrb)
   mrb_mruby_m5stickc_button_gem_init(mrb);
   mrb_mruby_m5stickc_led_gem_init(mrb);
   mrb_mruby_m5stickc_display_gem_init(mrb);
+  mrb_mruby_m5stickc_wire_gem_init(mrb);
+  mrb_mruby_m5stickc_bmp280_gem_init(mrb);
+  mrb_mruby_m5stickc_dht12_gem_init(mrb);
   // mrb_mruby_xxx_gem_init(mrb);
 
 }
