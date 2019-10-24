@@ -2,6 +2,7 @@
 #include "mruby.h"
 #include "mruby/variable.h"
 #include "mruby/class.h"
+#include "mruby/array.h"
 #include "M5StickC.h"
 
 #ifdef __cplusplus
@@ -59,7 +60,7 @@ mrb_m5stickc_mpu6886_get_accel_data(mrb_state *mrb, mrb_value self)
 {
   float x, y, z;
   mrb_value result;
-  const mrb_value values[3];
+  mrb_value values[3];
 
   M5.MPU6886.getAccelData(&x, &y, &z);
   values[0] = mrb_float_value(mrb, (mrb_float)x);
@@ -88,7 +89,7 @@ mrb_m5stickc_mpu6886_get_gyro_data(mrb_state *mrb, mrb_value self)
 {
   float x, y, z;
   mrb_value result;
-  const mrb_value values[3];
+  mrb_value values[3];
 
   M5.MPU6886.getGyroData(&x, &y, &z);
   values[0] = mrb_float_value(mrb, (mrb_float)x);
@@ -117,7 +118,7 @@ mrb_m5stickc_mpu6886_get_ahrs_data(mrb_state *mrb, mrb_value self)
 {
   float pitch, roll, yaw;
   mrb_value result;
-  const mrb_value values[3];
+  mrb_value values[3];
 
   M5.MPU6886.getAhrsData(&pitch, &roll, &yaw);
   values[0] = mrb_float_value(mrb, (mrb_float)pitch);
