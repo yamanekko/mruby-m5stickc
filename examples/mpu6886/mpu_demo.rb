@@ -1,19 +1,19 @@
+LCD = M5StickC::Display.new
 @mpu = M5StickC::MPU6886.new
 
 100.times do
-
-  ## 余計なRVALUEを生成しないパターン
-  @mpu.read_accel_data
-  puts "accel x:#{@mpu.x}, y:#{@mpu.y}, z:#{@mpu.z}"
-
-  @mpu.read_gyro_data
-  puts "gyro  x:#{@mpu.x}, y:#{@mpu.y}, z:#{@mpu.z}"
-
-  @mpu.read_ahrs_data
-  puts "gyro  x:#{@mpu.x}, y:#{@mpu.y}, z:#{@mpu.z}"
+  LCD.clear
+  LCD.cursor_position(0, 0)
 
   ## 呼び出すごとにRVALUE(Array)を生成するパターン
-  puts @mpu.accel_data
-  puts @mpu.gyro_data
-  puts @mpu.ahrs_data
+  x, y, z = @mpu.accel_data
+  LCD.print(sprintf("ac x:%2.2f y:%2.2f, z:%2.2f\n", x, y, z))
+
+  x, y, z = @mpu.gyro_data
+  LCD.print(sprintf("gy x:%2.2f y:%2.2f, z:%2.2f\n", x, y, z))
+
+  pitch, roll, yaw = @mpu.gyro_data
+  LCD.print(sprintf("ah pitch:%2.2f roll:%2.2f, yaw:%2.2f\n", pitch, roll, yaw))
+
+  ESP32::System.delay(1000)
 end
