@@ -117,6 +117,8 @@ private:
    uint16_t port;
    Stream* stream;
    int _state;
+   mrb_state *mrb;
+   mrb_value self;
 public:
    PubSubClient();
    PubSubClient(Client& client);
@@ -175,6 +177,10 @@ public:
    boolean loop();
    boolean connected();
    int state();
+
+  void setMrb_state(mrb_state *mrb);
+  void setSelf(mrb_value self);
+
 };
 
 
