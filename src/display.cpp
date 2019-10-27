@@ -102,6 +102,16 @@ mrb_m5stickc_display_set_text_size(mrb_state *mrb, mrb_value self)
   return self;
 }
 
+static mrb_value
+mrb_m5stickc_display_set_rotation(mrb_state *mrb, mrb_value self)
+{
+  mrb_int r;
+  mrb_get_args(mrb, "i", &r);
+
+  M5.Lcd.setRotation((uint8_t)r);
+  return self;
+}
+
 extern const unsigned char gImage_logo[];
 
 static mrb_value
@@ -141,9 +151,10 @@ mrb_mruby_m5stickc_display_gem_init(mrb_state* mrb)
   mrb_define_method(mrb, display_class, "puts", mrb_m5stickc_display_println, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "fill_screen", mrb_m5stickc_display_fill_screen, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "clear", mrb_m5stickc_display_clear_screen, MRB_ARGS_NONE());
-  mrb_define_method(mrb, display_class, "cursor_position", mrb_m5stickc_display_set_cursor, MRB_ARGS_REQ(2));
+  mrb_define_method(mrb, display_class, "cursor", mrb_m5stickc_display_set_cursor, MRB_ARGS_REQ(2));
   mrb_define_method(mrb, display_class, "text_color=", mrb_m5stickc_display_set_text_color, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "text_size=", mrb_m5stickc_display_set_text_size, MRB_ARGS_REQ(1));
+  mrb_define_method(mrb, display_class, "rotation=", mrb_m5stickc_display_set_rotation, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "draw_bitmap", mrb_m5stickc_display_draw_bitmap, MRB_ARGS_REQ(4));
 //  mrb_define_method(mrb, display_class, "draw_bitmap_transparent", mrb_m5stickc_display_draw_bitmap_transparent, MRB_ARGS_REQ(2));
 
