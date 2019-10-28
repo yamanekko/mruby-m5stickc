@@ -14,15 +14,16 @@ extern "C" {
 static mrb_value
 mrb_mruby_m5stickc_wifi_initialize(mrb_state *mrb, mrb_value self)
 {
-printf("WiFi new called\r\n");
+  log_i("WiFi new called");
 	return self;
 }
 
 static mrb_value
 mrb_mruby_m5stickc_wifi_disconnect(mrb_state *mrb, mrb_value self)
 {
-printf("WiFi disConnect called\r\n");
-	mrb_bool preserve_client; // defauit is false
+  log_i("WiFi disConnect called");
+
+  mrb_bool preserve_client; // defauit is false
   mrb_int n = mrb_get_args(mrb, "|b", &preserve_client);
   if (n < 1) {
     preserve_client = false;
@@ -39,17 +40,19 @@ mrb_mruby_m5stickc_wifi_begin_sta_mode(mrb_state *mrb, mrb_value self)
 	const char *ssid;
 	const char *pass;
 	mrb_int ssid_len, pass_len;
-	mrb_get_args(mrb, "ss", &ssid, &ssid_len, &pass, &pass_len);
-printf("STA ssid=%s, pass=%s\r\n", ssid, pass);
-  WiFi.begin(ssid, pass);
-  return self;
+
+    mrb_get_args(mrb, "ss", &ssid, &ssid_len, &pass, &pass_len);
+    log_i("STA ssid=%s, pass=%s", ssid, pass);
+
+    WiFi.begin(ssid, pass);
+    return self;
 }
 
 
 static mrb_value
 mrb_mruby_m5stickc_wifi_status(mrb_state *mrb, mrb_value self)
 {
-printf("wifi status called\r\n");
+  log_i("wifi status called");
   mrb_int status = (mrb_int)WiFi.status();
   return mrb_fixnum_value(status);
 }
@@ -60,7 +63,7 @@ mrb_mruby_m5stickc_wifi_localip(mrb_state *mrb, mrb_value self)
   IPAddress ip = WiFi.localIP();
   String sIP = ip.toString();
   const char *sIP2 = sIP.c_str();
-printf("wifi localIP:%s", sIP2);
+  log_i("wifi localIP:%s", sIP2);
   mrb_value s = mrb_str_new_cstr(mrb, sIP2);
   return s;
 }

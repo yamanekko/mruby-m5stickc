@@ -6,7 +6,6 @@ IMU = M5StickC::MPU6886.new
 
 LCD.rotation = 1
 LCD.clear
-LCD.brightness = 50
 LCD.fill_screen(M5StickC::Display::GREEN)
 LCD.text_color = M5StickC::Display::BLACK
 

@@ -12,21 +12,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 static mrb_value
 mrb_mruby_m5stickc_ntp_config_time(mrb_state *mrb, mrb_value self)
 {
-//void configTime(long gmtOffset_sec, int daylightOffset_sec, const char* server1, const char* server2, const char* server3)
-printf("configTime called\r\n");
-	const char *server1;
-	const char *server2;
-	const char *server3;
-	mrb_int server1_len, server2_len, server3_len;
+  // void configTime(long gmtOffset_sec, int daylightOffset_sec, const char* server1, const char* server2, const char* server3)
+  log_i("configTime called\r\n");
+  const char *server1;
+  const char *server2;
+  const char *server3;
+  mrb_int server1_len, server2_len, server3_len;
   mrb_int gmtOffset_sec;
   mrb_int daylightOffset_sec;
 
-	mrb_get_args(mrb, "iisss", &gmtOffset_sec, &daylightOffset_sec, &server1, &server1_len, &server2, &server2_len, &server3, &server3_len);
+  mrb_get_args(mrb, "iisss", &gmtOffset_sec, &daylightOffset_sec, &server1, &server1_len, &server2, &server2_len, &server3, &server3_len);
 
-printf("confg_val:%d, %d, %s, %s, %s\r\n", gmtOffset_sec, daylightOffset_sec, server1,server2,server3);
+  log_i("confg_val:%d, %d, %s, %s, %s\r\n", gmtOffset_sec, daylightOffset_sec, server1,server2,server3);
   configTime(gmtOffset_sec, daylightOffset_sec, server1,server2,server3);
 
   return self;
