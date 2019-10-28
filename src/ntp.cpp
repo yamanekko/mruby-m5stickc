@@ -27,7 +27,7 @@ mrb_mruby_m5stickc_ntp_config_time(mrb_state *mrb, mrb_value self)
 
   mrb_get_args(mrb, "iisss", &gmtOffset_sec, &daylightOffset_sec, &server1, &server1_len, &server2, &server2_len, &server3, &server3_len);
 
-  log_i("confg_val:%d, %d, %s, %s, %s\r\n", gmtOffset_sec, daylightOffset_sec, server1,server2,server3);
+  log_i("confg_val:%d, %d, %s, %s, %s", gmtOffset_sec, daylightOffset_sec, server1,server2,server3);
   configTime(gmtOffset_sec, daylightOffset_sec, server1,server2,server3);
 
   return self;
