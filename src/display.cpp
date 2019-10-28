@@ -132,6 +132,26 @@ mrb_m5stickc_display_draw_bitmap_transparent(mrb_state *mrb, mrb_value self)
   return self;
 }
 
+static mrb_value
+mrb_m5stickc_display_fill_circle(mrb_state *mrb, mrb_value self)
+{
+  mrb_int x, y, r, color;
+  mrb_get_args(mrb, "iiii", &x, &y, &r, &color);
+
+  M5.Lcd.fillCircle(x, y, r, (uint32_t)color); // but actually color is uint16_t??
+  return self;
+}
+
+static mrb_value
+mrb_m5stickc_display_fill_rect(mrb_state *mrb, mrb_value self)
+{
+  mrb_int x, y, w, h, color;
+  mrb_get_args(mrb, "iiiii", &x, &y, &w, &h, &color);
+
+  M5.Lcd.fillRect(x, y, w, h, (uint32_t)color);
+  return self;
+}
+
 void
 mrb_mruby_m5stickc_display_gem_init(mrb_state* mrb)
 {
@@ -157,7 +177,8 @@ mrb_mruby_m5stickc_display_gem_init(mrb_state* mrb)
   mrb_define_method(mrb, display_class, "rotation=", mrb_m5stickc_display_set_rotation, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "draw_bitmap", mrb_m5stickc_display_draw_bitmap, MRB_ARGS_REQ(4));
 //  mrb_define_method(mrb, display_class, "draw_bitmap_transparent", mrb_m5stickc_display_draw_bitmap_transparent, MRB_ARGS_REQ(2));
-
+  mrb_define_method(mrb, display_class, "fill_circle", mrb_m5stickc_display_fill_circle, MRB_ARGS_REQ(4));
+  mrb_define_method(mrb, display_class, "fill_rect", mrb_m5stickc_display_fill_rect, MRB_ARGS_REQ(5));
 }
 
 void
