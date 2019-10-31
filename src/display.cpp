@@ -103,6 +103,16 @@ mrb_m5stickc_display_set_text_size(mrb_state *mrb, mrb_value self)
 }
 
 static mrb_value
+mrb_m5stickc_display_set_text_font(mrb_state *mrb, mrb_value self)
+{
+	mrb_int font;
+	mrb_get_args(mrb, "i", &font);
+
+  M5.Lcd.setTextFont(font);
+  return self;
+}
+
+static mrb_value
 mrb_m5stickc_display_set_rotation(mrb_state *mrb, mrb_value self)
 {
   mrb_int r;
@@ -174,6 +184,7 @@ mrb_mruby_m5stickc_display_gem_init(mrb_state* mrb)
   mrb_define_method(mrb, display_class, "cursor", mrb_m5stickc_display_set_cursor, MRB_ARGS_REQ(2));
   mrb_define_method(mrb, display_class, "text_color=", mrb_m5stickc_display_set_text_color, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "text_size=", mrb_m5stickc_display_set_text_size, MRB_ARGS_REQ(1));
+  mrb_define_method(mrb, display_class, "text_font=", mrb_m5stickc_display_set_text_font, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "rotation=", mrb_m5stickc_display_set_rotation, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "draw_bitmap", mrb_m5stickc_display_draw_bitmap, MRB_ARGS_REQ(4));
 //  mrb_define_method(mrb, display_class, "draw_bitmap_transparent", mrb_m5stickc_display_draw_bitmap_transparent, MRB_ARGS_REQ(2));
