@@ -16,6 +16,7 @@ void mrb_mruby_m5stickc_dht12_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_wifi_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_aws_iot_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_ntp_gem_init(mrb_state *mrb);
+void mrb_mruby_m5stickc_spiffs_gem_init(mrb_state* mrb);
 //void mrb_mruby_m5stickc_time2_gem_init(mrb_state *mrb);
 
 static mrb_value
@@ -47,6 +48,7 @@ mrb_mruby_m5stickc_gem_init(mrb_state* mrb)
   mrb_mruby_m5stickc_wifi_gem_init(mrb);
   mrb_mruby_m5stickc_aws_iot_gem_init(mrb);
   mrb_mruby_m5stickc_ntp_gem_init(mrb);
+  mrb_mruby_m5stickc_spiffs_gem_init(mrb);
 //  mrb_mruby_m5stickc_time2_gem_init(mrb);
   // mrb_mruby_xxx_gem_init(mrb);
 
