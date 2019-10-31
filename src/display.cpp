@@ -43,6 +43,20 @@ mrb_m5stickc_display_print(mrb_state *mrb, mrb_value self)
   return self;
 }
 
+//TODO: 可変長引数のprintfがほしいんだって
+static mrb_value
+mrb_m5stickc_display_printf(mrb_state *mrb, mrb_value self)
+{
+	const char *msg;
+	mrb_int num;
+  mrb_value *v;
+	mrb_get_args(mrb, "*", &v, &num);
+
+
+//  M5.Lcd.printf(v[0], v[1], v[2]...);
+  return self;
+}
+
 static mrb_value
 mrb_m5stickc_display_println(mrb_state *mrb, mrb_value self)
 {
@@ -84,11 +98,22 @@ mrb_m5stickc_display_set_cursor(mrb_state *mrb, mrb_value self)
 
 static mrb_value
 mrb_m5stickc_display_set_text_color(mrb_state *mrb, mrb_value self)
-{
+{ // back color is transparent
 	mrb_int color;
 	mrb_get_args(mrb, "i", &color);
 
   M5.Lcd.setTextColor(color);
+  return self;
+}
+
+
+static mrb_value
+mrb_m5stickc_display_set_text_color_with_back_color(mrb_state *mrb, mrb_value self)
+{
+	mrb_int text_color, back_color;
+	mrb_get_args(mrb, "ii", &text_color, &back_color);
+
+  M5.Lcd.setTextColor(text_color, back_color);
   return self;
 }
 
@@ -173,6 +198,7 @@ mrb_mruby_m5stickc_display_gem_init(mrb_state* mrb)
   mrb_define_method(mrb, display_class, "clear", mrb_m5stickc_display_clear_screen, MRB_ARGS_NONE());
   mrb_define_method(mrb, display_class, "cursor", mrb_m5stickc_display_set_cursor, MRB_ARGS_REQ(2));
   mrb_define_method(mrb, display_class, "text_color=", mrb_m5stickc_display_set_text_color, MRB_ARGS_REQ(1));
+  mrb_define_method(mrb, display_class, "text_color_with_back_color", mrb_m5stickc_display_set_text_color_with_back_color, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "text_size=", mrb_m5stickc_display_set_text_size, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "rotation=", mrb_m5stickc_display_set_rotation, MRB_ARGS_REQ(1));
   mrb_define_method(mrb, display_class, "draw_bitmap", mrb_m5stickc_display_draw_bitmap, MRB_ARGS_REQ(4));
