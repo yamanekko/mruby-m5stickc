@@ -1,8 +1,6 @@
 LCD = M5StickC::Display.new
 @mpu = M5StickC::MPU6886.new
 
-p "-- RUBY START!! -"
-
 100.times do
   LCD.clear
   LCD.cursor_position(0, 0)
