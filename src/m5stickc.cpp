@@ -17,6 +17,7 @@ void mrb_mruby_m5stickc_wifi_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_aws_iot_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_ntp_gem_init(mrb_state *mrb);
 void mrb_mruby_m5stickc_spiffs_gem_init(mrb_state* mrb);
+void mrb_mruby_m5stickc_axp_gem_init(mrb_state *mrb);
 //void mrb_mruby_m5stickc_time2_gem_init(mrb_state *mrb);
 
 static mrb_value
@@ -33,6 +34,8 @@ mrb_mruby_m5stickc_gem_init(mrb_state* mrb)
   // constants
   mrb_define_const(mrb,m5_class, "BUTTON_A", mrb_fixnum_value(37));
   mrb_define_const(mrb,m5_class, "BUTTON_B", mrb_fixnum_value(39));
+  mrb_define_const(mrb,m5_class, "BUTTON_HOME", mrb_fixnum_value(37));
+  mrb_define_const(mrb,m5_class, "BUTTON_RESET", mrb_fixnum_value(39));
 
   // methods
   mrb_define_method(mrb, m5_class, "initialize", mrb_mruby_m5stickc_initialize, MRB_ARGS_NONE());
@@ -49,6 +52,7 @@ mrb_mruby_m5stickc_gem_init(mrb_state* mrb)
   mrb_mruby_m5stickc_aws_iot_gem_init(mrb);
   mrb_mruby_m5stickc_ntp_gem_init(mrb);
   mrb_mruby_m5stickc_spiffs_gem_init(mrb);
+  mrb_mruby_m5stickc_axp_gem_init(mrb);
 //  mrb_mruby_m5stickc_time2_gem_init(mrb);
   // mrb_mruby_xxx_gem_init(mrb);
 
