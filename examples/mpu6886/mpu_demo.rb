@@ -10,8 +10,6 @@ p "-- RUBY START!! -"
   ## 呼び出すごとにRVALUE(Array)を生成するパターン
   x, y, z = @mpu.accel_data
   LCD.print(sprintf("ac x:%2.2f y:%2.2f, z:%2.2f\n", x, y, z))
-  msg = sprintf("ac x:%2.2f y:%2.2f, z:%2.2f\n", x, y, z)
-  p msg
 
   x, y, z = @mpu.gyro_data
   LCD.print(sprintf("gy x:%2.2f y:%2.2f, z:%2.2f\n", x, y, z))
