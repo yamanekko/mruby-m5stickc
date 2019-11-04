@@ -10,10 +10,10 @@ LCD = M5StickC::Display.new
   ESP32::System.delay(1000)
 
   LCD.text_size = 2
-  LCD.puts("Hello, World!")
+  LCD.print("Hello, World!\n")
   ESP32::System.delay(1000)
 
   LCD.text_size = 3
-  LCD.puts("Hello, World!")
+  LCD.printf("Hello, %s!\n", "World")
   ESP32::System.delay(1000)
 end
