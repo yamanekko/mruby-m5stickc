@@ -43,20 +43,6 @@ mrb_m5stickc_display_print(mrb_state *mrb, mrb_value self)
   return self;
 }
 
-//TODO: 可変長引数のprintfがほしいんだって
-static mrb_value
-mrb_m5stickc_display_printf(mrb_state *mrb, mrb_value self)
-{
-	const char *msg;
-	mrb_int num;
-  mrb_value *v;
-	mrb_get_args(mrb, "*", &v, &num);
-
-
-//  M5.Lcd.printf(v[0], v[1], v[2]...);
-  return self;
-}
-
 static mrb_value
 mrb_m5stickc_display_println(mrb_state *mrb, mrb_value self)
 {
