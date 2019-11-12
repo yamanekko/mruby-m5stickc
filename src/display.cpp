@@ -28,6 +28,12 @@ extern "C" {
 static mrb_value
 mrb_m5stickc_display_init(mrb_state *mrb, mrb_value self)
 {
+  return self;
+}
+
+static mrb_value
+mrb_m5stickc_display_begin(mrb_state *mrb, mrb_value self)
+{
   M5.Lcd.begin();
   return self;
 }
@@ -216,6 +222,7 @@ mrb_mruby_m5stickc_display_gem_init(mrb_state* mrb)
 //  mrb_define_method(mrb, display_class, "draw_bitmap_transparent", mrb_m5stickc_display_draw_bitmap_transparent, MRB_ARGS_REQ(2));
   mrb_define_method(mrb, display_class, "fill_circle", mrb_m5stickc_display_fill_circle, MRB_ARGS_REQ(4));
   mrb_define_method(mrb, display_class, "fill_rect", mrb_m5stickc_display_fill_rect, MRB_ARGS_REQ(5));
+  mrb_define_method(mrb, display_class, "begin", mrb_m5stickc_display_begin, MRB_ARGS_NONE());
 }
 
 void
